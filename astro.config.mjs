@@ -1,6 +1,5 @@
 import {defineConfig} from "astro/config";
 import starlight from "@astrojs/starlight";
-import node from "@astrojs/node";
 import react from "@astrojs/react";
 import markdoc from "@astrojs/markdoc";
 import keystatic from '@keystatic/astro'
@@ -14,12 +13,12 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import AutoImport from "astro-auto-import";
 import starlightDocSearch from "@astrojs/starlight-docsearch";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
     output: 'static',
-    adapter: node({
-        mode: "standalone"
-    }),
+    adapter: vercel(),
 
     site: "https://flomaster.chrsnv.ru",
     base: "/",
@@ -140,10 +139,10 @@ export default defineConfig({
                 ],
                 plugins: [
                     starlightUtils({
-                    multiSidebar: {
-                        switcherStyle: "horizontalList",
-                    },
-                }),
+                        multiSidebar: {
+                            switcherStyle: "horizontalList",
+                        },
+                    }),
                     starlightDocSearch({
                         appId: "DN83H0EFK4",
                         apiKey: "26993d897f7166569aaa44ad941e0475",
@@ -157,10 +156,10 @@ export default defineConfig({
                         {
                             name: 'Hide copy button',
                             baseStyles: `
-                      .expressive-code .copy button {
-                        display: none;
-                      }
-                    `,
+                    .expressive-code .copy button {
+                      display: none;
+                    }
+                  `,
                         },
 
                     ],
@@ -198,5 +197,4 @@ export default defineConfig({
             ],
         ],
     },
-
 });
